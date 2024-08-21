@@ -14,12 +14,12 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE) // This Id should auto generated
     private Integer id; // id is primary key
-    private String questionText; // ORM takes care of it. it means camel case here (questionTitle) is equal to question_title (snake_case) in SQL
+    private String difficultyLevel;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
+    private String questionText; // ORM takes care of it. it means camel case here (questionTitle) is equal to question_title (snake_case) in SQL
     private String rightAnswer;
-    private String difficultylevel;
-    private Integer category;
+    private String category;
 }
