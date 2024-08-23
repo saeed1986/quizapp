@@ -1,12 +1,10 @@
 package com.example.quizapp.controller;
 
-import com.example.quizapp.Question;
+import com.example.quizapp.model.Question;
 import com.example.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,12 +15,19 @@ public class QuestionController {
     @Autowired // We got an object with this annotation
     QuestionService questionService;
     @GetMapping("allQuestions") // with allquestion does not work
-    public List<Question> getAllQuestion(){ // most of the time you will have the same method names
+    public ResponseEntity<List<Question>> getAllQuestions(){ // most of the time you will have the same method names
         return questionService.getAllQuestions();
     }
 
+    // it does n't work and there is an issue here
     @GetMapping("category/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category) {
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category){
         return questionService.getQuestionsByCategory(category);
+    }
+
+    // It does not work
+    @PostMapping("add")
+    public ResponseEntity<String> addQuestion(@RequestBody Question question) {
+        return questionService.addQuestion(question);
     }
 }
